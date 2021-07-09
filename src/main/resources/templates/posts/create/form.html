@@ -10,21 +10,25 @@
 
 </head>
 <body>
-<h1 class="h5">投稿中</h1>
+	<div class="row">
+	<div class="col-sm-6 mb-3">
+	
 <form th:action="@{/posts/create/confirm}" th:object="${postsForm}" th:method="post">
-	<div class="form-group">
+	<div class="form-group col-6">
 		<label for="name">名前</label>
 		<input class="form-control" type="text" th:field="*{name}"/>
 		<div class="form-text text-muted" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 	</div>
-	<div class="form-group">
+	<div class="form-group col-6">
 		<label for="post"></label>
-		<input class="form-control" type="text" th:field="*{post}"/>
+		<input class="form-control input-lg" type="text" th:field="*{post}"/>
 		<div class="form-text text-muted" th:if="${#fields.hasErrors('post')}" th:errors="*{post}"></div>
 	</div>
 	
 	<button class="btn btn-outline-dark" type="submit">追加</button>
 	<a class ="btn btn-outline-dark" href="/posts/">戻る</a>
 </form>
+	</div>
+	</div>
 </body>
 </html>

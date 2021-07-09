@@ -11,30 +11,28 @@
 </head>
 <body>
 <h1>掲示板</h1>
-<!-- テーブル -->
-<table class="table table-striped">	
-	<thead>
-		<tr></tr>
-	</thead>
-	<tbody>
-		<tr th:each="posts : ${list}">
-		<td th:text = "${posts.name}"></td>
-		<td th:text = "${posts.post}"></td>
-		<td th:text = "${posts.day}"></td>
-		<td>
-	    	<form th:action="@{/posts/update/form/{id}(id=${posts.id})}" th:method="post">
-	    		<button class="btn btn-outline-dark btn-block" type="submit">更新</button>
-	    	</form>
-	    </td>
-	    <td>
-	    	<form th:action="@{/posts/delete/confirm/{id}(id=${posts.id})}" th:method="post">
-	    		<button class="btn btn-outline-dark btn-block" type="submit">削除</button>
-	    	</form>
-	    </td>
-		</tr>
-	</tbody>
-</table>
-<!-- テーブル -->
+<div class="row">
+
+  <div class="col-sm-6 mb-3" th:each="posts : ${list}">
+    <div class="card bg-secondary bg-gradient">
+      <div class="card-body text-light">
+        <h5 class="card-title" th:text = "${posts.name}"></h5>
+        <p class="card-text" th:text = "${posts.post}"></p>
+        <p class="card-text" th:text = "${posts.day}"></p>
+      </div>
+      
+      <div class="d-grid gap-2 col-6 mx-auto">
+      <form th:action="@{/posts/update/form/{id}(id=${posts.id})}" th:method="post">
+	    <button class="btn btn-light btn-block mb-2" type="submit">更新</button>
+	   </form>
+	   <form th:action="@{/posts/delete/confirm/{id}(id=${posts.id})}" th:method="post">
+	    <button class="btn btn-light btn-block" type="submit">削除</button>
+	   </form>
+	    </div>
+    </div>
+  </div>
+  
+</div>
 
 
 	<div class="col">
@@ -42,6 +40,8 @@
 			<button class="btn btn-outline-dark" type="submit">投稿</button>
 		</form>
 	</div>
+	
+
 			
 </body>
 </html>

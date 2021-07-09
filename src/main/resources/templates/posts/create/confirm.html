@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}">
+    <script th:href="@{webjars/jquery/3.5.1/js/jquery.min.js}"></script>
+    <script th:href="@{webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+	<title>登録確認</title>
+</head>
+<body>
+<div class="container mt-4">
+		<table class="table table-striped" th:object="${postsForm}">
+			<thead>
+				<tr><th>名前</th><th></th></tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="*{name}"></td>
+					<td th:text="*{post}"></td>
+					<td th:text="*{day}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<form class="d-inline" th:action="@{/posts/create/}" th:object="${postsForm}" th:method="post">
+			<input type="hidden" th:field="*{name}"/>
+			<input type="hidden" th:field="*{post}"/>
+			<input type="hidden" th:field="*{day}"/>
+			
+			<button class="btn btn-outline-dark" type="submit">登録</button>
+		</form>
+		
+		<form class="d-inline" th:action="@{/posts/create/form/}" th:object="${postsForm}" th:method="post">
+			<input type="hidden" th:field="*{name}"/>
+			<input type="hidden" th:field="*{post}"/>
+			<input type="hidden" th:field="*{day}"/>
+			
+			<button class="btn btn-outline-dark" type="submit">戻る</button>
+		</form>
+		
+	</div>
+</body>
+</html>

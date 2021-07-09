@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}">
+    <script th:href="@{webjars/jquery/3.5.1/js/jquery.min.js}"></script>
+    <script th:href="@{webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+	<title>掲示板</title>
+
+</head>
+<body>
+<h1>掲示板</h1>
+<!-- テーブル -->
+<table class="table table-striped">	
+	<thead>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr th:each="posts : ${list}">
+		<td th:text = "${posts.name}"></td>
+		<td th:text = "${posts.post}"></td>
+		<td th:text = "${posts.day}"></td>
+		<td>
+	    	<form th:action="@{/posts/update/form/{id}(id=${posts.id})}" th:method="post">
+	    		<button class="btn btn-outline-dark btn-block" type="submit">更新</button>
+	    	</form>
+	    </td>
+	    <td>
+	    	<form th:action="@{/posts/delete/confirm/{id}(id=${posts.id})}" th:method="post">
+	    		<button class="btn btn-outline-dark btn-block" type="submit">削除</button>
+	    	</form>
+	    </td>
+		</tr>
+	</tbody>
+</table>
+<!-- テーブル -->
+
+
+	<div class="col">
+		<form class="mb-2" th:action="@{/posts/create/form/}" th:method="post">
+			<button class="btn btn-outline-dark" type="submit">投稿</button>
+		</form>
+	</div>
+			
+</body>
+</html>
